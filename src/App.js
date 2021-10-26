@@ -3,7 +3,8 @@ import React from 'react';
 import './firebase';
 
 import Links from './components/Links';
-import LinkForm from './components/LinkForm';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <div className="row">
           <Links/>
         </div>
-        <LinkForm/>
+        <ToastContainer/>
       </div>
     </React.Fragment>
     );
