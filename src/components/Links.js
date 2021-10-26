@@ -58,27 +58,31 @@ const Links = () => {
       <div className="col-md-8 p-2">
         {links.map((link) => (
           <div className="card mb-1" key={link.id}>
-            <div className="card-body">
-              <div className="d-flex justify-content-between">
-                <h4>{link.name}</h4>
-                <div>
-                  <i
-                    className="material-icons text-danger"
-                    onClick={() => onDeleteLink(link.id)}
-                  >
-                    close
-                  </i>
-                  <i
-                    className="material-icons"
-                    onClick={() => setCurrentId(link.id)}
-                  >
-                    create
-                  </i>
+            <table>
+                <div className="card-body">
+                <div className="d-flex justify-content-between">
+                    <h4>{link.name}</h4>
+                    <div>
+                        <i
+                            className="material-icons text-danger"
+                            onClick={() => onDeleteLink(link.id)}
+                        >
+                            close
+                        </i>
+                        <i
+                            className="material-icons"
+                            onClick={() => setCurrentId(link.id)}
+                        >
+                            create
+                        </i>
+                        </div>
+                    </div>
+                    <p>{link.invoice_number}</p>
+                    <p>{link.currancy}</p>
+                    <p>{link.description}</p>
+
                 </div>
-              </div>
-              <p>{link.description}</p>
-              <a href={link.url} target="_blank" rel="noopener noreferrer">Go to Website</a>
-            </div>
+            </table>
           </div>
         ))}
       </div>

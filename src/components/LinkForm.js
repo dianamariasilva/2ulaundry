@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import {toast} from 'react-toastify';
+// import {toast} from 'react-toastify';
 import { db } from '../firebase';
 
 const LinkForm = (props) => {
 
     const initialStateValues = {
-        urb: '',
-        name: '',
-        description: ''
+        invoice_number: '',
+        currancy: '',
+        description: '',
+        status: false
     };
 
+    
     const [values, setValues] = useState ( initialStateValues );
 
     const handleInputChange = (e) => {
@@ -29,43 +31,61 @@ const LinkForm = (props) => {
 
     const getLinkById = async(id) => {
         const doc = await db.collection('links').doc(id).get();
+        setValues({...doc.data()})
     }
 
     useEffect(() => {
         if (props.currentId === '') {
             setValues({initialStateValues});
         } else {
-            console.log("editing")
+            getLinkById(props.currentId);
         }
     }, [props.currentId]);
 
     return  (
-        <form className="card card-body" onSubmit={handleSubmit}>
-            <div className="form-group input-group">
-                <div className="input-group-text bg-light">
-                    <i class="material-icons">insert_link</i>
-                </div>                
-                <input 
-                    type='text' 
-                    className="form-control" 
-                    placeholder="invoice" 
-                    name="invoice"
-                    onChange={ handleInputChange }
-                />
+    <form onSubmit={handleSubmit} className="card card-body border-primary">
+        <div className="form-group input-group">
+            <div className="input-group-text bg-light">
+            <i className="material-icons">create</i>
             </div>
-            <div className="form-group input-group">
-                <div className="input-group-text bg-light">
-                    <i class="material-icons">create</i>
-                </div>
-                <input type="text" className="form-control" name="web" placeholder="Website" onChange={ handleInputChange }/>
+            <input
+            type="text"
+            value={values.invoice_number}
+            name="invoice_number"
+            placeholder="12345"
+            className="form-control"
+            onChange={handleInputChange}
+            />
+        </div>
+        <div className="form-group input-group">
+            <div className="input-group-text bg-light">
+            <i className="material-icons">create</i>
             </div>
-            <div className="form-group">
-                <textarea name="description" rows="3" className="form-control" placeholder="Write a description" onChange={ handleInputChange }></textarea>
-            </div>
-            <button className="btn btn-primary btn-block">
-                Save
-            </button>
-        </form>      
+            <input
+            type="text"
+            value={values.currancy}
+            name="currancy"
+            placeholder="Website Name"
+            className="form-control"
+            onChange={handleInputChange}
+            />
+        </div>
+        <div className="form-group">
+            <textarea
+            rows="3"
+            className="form-control"
+            placeholder="Write a Description"
+            name="description"
+            value={values.description}
+            onChange={handleInputChange}
+            ></textarea>
+        </div>
+        
+
+        <button className="btn btn-primary btn-block">
+            {props.currentId === "" ? "Save" : "Update"}
+        </button>
+    </form>      
     )
 };
 
