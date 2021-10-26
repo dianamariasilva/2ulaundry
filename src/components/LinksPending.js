@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import LinkForm from './LinkForm';
 import { collection, onSnapshot } from "firebase/firestore";
 
-const LinksPendientes = () => {
+const LinksPending = () => {
   const [links, setLinks] = useState([]);
   const [currentId, setCurrentId] = useState("");
 
@@ -108,9 +108,9 @@ const LinksPendientes = () => {
                     <p>{link.invoice_number}</p>
                     <p>{link.currancy}</p>
                     <p>{link.description}</p>
-                    <p>Estado: {link.status? 'Approved' : 'Penidiente'}</p>
+                    <p>Estado: {link.status? 'Approved' : 'Pending'}</p>
                     <button className={link.status? 'btn btn-sucess' : 'btn btn-danger'} onClick={() => onChangeStatusLink(link.id)}>
-                      {link.status? 'Approved' : 'Penidiente'}
+                      {link.status? 'Approved' : 'Pending'}
                     </button>
 
                 </div>
@@ -122,4 +122,4 @@ const LinksPendientes = () => {
   );
 };
 
-export default LinksPendientes;
+export default LinksPending;

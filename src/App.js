@@ -3,7 +3,7 @@ import React from 'react';
 import './firebase';
 
 import Links from './components/Links';
-import LinksPendientes from './components/LinksPendientes';
+import LinksPending from './components/LinksPending';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -28,7 +28,7 @@ function AppLinksPendientes() {
     <React.Fragment>
       <div className="container p-4">
         <div className="row">
-          <LinksPendientes/>
+          <LinksPending/>
         </div>
         <ToastContainer/>
       </div>

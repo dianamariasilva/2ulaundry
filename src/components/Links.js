@@ -62,13 +62,13 @@ const Links = () => {
                 <table>
                     <tr>
                         <td className="col-md-2 bg-dark">Invoice number</td>
-                        <td className="col-md-2">Total</td>
-                        <td className="col-md-2">Currancy</td>
-                        <td className="col-md-2">Invoice Date</td>
-                        <td className="col-md-2">Due Date</td>
-                        <td className="col-md-2">Remittance Adress</td>
-                        <td className="col-md-2">Status</td>
-                        <td className="col-md-2">actions</td>
+                        <td className="col-md-2 bg-dark">Total</td>
+                        <td className="col-md-2 bg-dark">Currancy</td>
+                        <td className="col-md-2 bg-dark">Invoice Date</td>
+                        <td className="col-md-2 bg-dark">Due Date</td>
+                        <td className="col-md-2 bg-dark">Remittance Adress</td>
+                        <td className="col-md-2 bg-dark">Status</td>
+                        <td className="col-md-2 bg-dark">actions</td>
                     </tr>
                     {links.map((link) => (
                     <tr key={link.id}>
