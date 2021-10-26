@@ -23,7 +23,7 @@ function AppLinks() {
     </React.Fragment>
     );
 }
-function AppLinksPendientes() {
+function AppLinksPendings() {
   return (
     <React.Fragment>
       <div className="container p-4">
@@ -40,7 +40,7 @@ function App() {
     <Router>
       <div className="App">
           <Route exact path="/" component={AppLinks} />
-          <Route exact path="/user2" component={AppLinksPendientes} />
+          <Route exact path="/user2" component={AppLinksPendings} />
       </div>
     </Router>
   );

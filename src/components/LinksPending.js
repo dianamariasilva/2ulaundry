@@ -80,44 +80,51 @@ const LinksPending = () => {
 
   return (
     <>
-      <div className="col-md-4 p-2">
-        <LinkForm {...{ links }} />
-      </div>
-      <div className="col-md-8 p-2">
-        {links.map((link) => (
-          <div className="card mb-1" key={link.id}>
+      <div className="col-md-12 p-2">
+          <div className="card mb-1" >
             <table>
-                <div className="card-body">
-                <div className="d-flex justify-content-between">
-                    <h4>{link.name}</h4>
-                    <div>
-                        <i
-                            className="material-icons text-danger"
-                            onClick={() => onDeleteLink(link.id)}
-                        >
-                            close
-                        </i>
-                        <i
-                            className="material-icons"
-                            onClick={() => setCurrentId(link.id)}
-                        >
-                            create
-                        </i>
-                        </div>
-                    </div>
-                    <p>{link.invoice_number}</p>
-                    <p>{link.currancy}</p>
-                    <p>{link.description}</p>
-                    <p>Estado: {link.status? 'Approved' : 'Pending'}</p>
-                    <button className={link.status? 'btn btn-sucess' : 'btn btn-danger'} onClick={() => onChangeStatusLink(link.id)}>
-                      {link.status? 'Approved' : 'Pending'}
-                    </button>
-
+                    <tr>
+                        <td className="col-md-2 bg-dark">Invoice number</td>
+                        <td className="col-md-2 bg-dark">Total</td>
+                        <td className="col-md-2 bg-dark">Currancy</td>
+                        <td className="col-md-2 bg-dark">Invoice Date</td>
+                        <td className="col-md-2 bg-dark">Due Date</td>
+                        <td className="col-md-2 bg-dark">Remittance Adress</td>
+                        <td className="col-md-2 bg-dark">Status</td>
+                        <td className="col-md-2 bg-dark">actions</td>
+                    </tr>
+                    {links.map((link) => (
+                    <tr key={link.id}>
+                            <td className="col-md-2"><h4>{link.invoice_number}</h4></td>
+                            <td className="col-md-2"><p>{link.total}</p></td>
+                            <td className="col-md-2"><p>{link.currancy}</p></td>
+                            <td className="col-md-2"><p>{link.invoice_date}</p></td>
+                            <td className="col-md-2"><p>{link.due_date}</p></td>
+                            <td className="col-md-2"><p>{link.remittance_address}</p></td>
+                            <button className={link.status? 'btn btn-sucess' : 'btn btn-danger'} onClick={() => onChangeStatusLink(link.id)}>
+                              {link.status? 'Approved' : 'Pending'}
+                            </button>
+                            <td className="col-md-2">
+                                <div>
+                                    <i
+                                        className="material-icons text-danger"
+                                        onClick={() => onDeleteLink(link.id)}
+                                    >
+                                        close
+                                    </i>
+                                    <i
+                                        className="material-icons"
+                                        onClick={() => setCurrentId(link.id)}
+                                    >
+                                        create
+                                    </i>
+                                </div>
+                            </td>
+                    </tr>
+                    ))}
+                </table>
                 </div>
-            </table>
           </div>
-        ))}
-      </div>
     </>
   );
 };

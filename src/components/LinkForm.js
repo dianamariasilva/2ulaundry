@@ -12,7 +12,7 @@ const LinkForm = (props) => {
         due_date:'',
         vendor_name:'',
         remittance_address:'',
-        status: false
+        status: "Approved"
     };
 
     
