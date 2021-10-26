@@ -20,7 +20,7 @@ const Links = () => {
   const onDeleteLink = async (id) => {
     if (window.confirm("are you sure you want to delete this invoice?")) {
       await db.collection("links").doc(id).delete();
-      toast("Link Removed Successfully", {
+      toast("Invoice Removed Successfully", {
         type: "error",
         autoClose: 2000
       });
@@ -35,12 +35,12 @@ const Links = () => {
     try {
       if (currentId === "") {
         await db.collection("links").doc().set(linkObject);
-        toast("New Invoice Added", {
+        toast("Invoice submitted successfully", {
           type: "success",
         });
       } else {
         await db.collection("links").doc(currentId).update(linkObject);
-        toast("Link Updated Successfully", {
+        toast("Invoice Updated Successfully", {
           type: "info",
         });
         setCurrentId("");
@@ -52,39 +52,56 @@ const Links = () => {
 
   return (
     <>
-      <div className="col-md-4 p-2">
+      <div className="col-md-5 p-2">
         <LinkForm {...{ addOrEditLink, currentId, links }} />
       </div>
-      <div className="col-md-8 p-2">
-        {links.map((link) => (
-          <div className="card mb-1" key={link.id}>
-            <table>
-                <div className="card-body">
-                <div className="d-flex justify-content-between">
-                    <h4>{link.name}</h4>
-                    <div>
-                        <i
-                            className="material-icons text-danger"
-                            onClick={() => onDeleteLink(link.id)}
-                        >
-                            close
-                        </i>
-                        <i
-                            className="material-icons"
-                            onClick={() => setCurrentId(link.id)}
-                        >
-                            create
-                        </i>
-                        </div>
-                    </div>
-                    <p>{link.invoice_number}</p>
-                    <p>{link.currancy}</p>
-                    <p>{link.description}</p>
-
+      <div className="col-md-7 p-2">
+          <div className="card mb-1" >
+            <div className="card-body">
+            {links.map((link) => (
+                <div key={link.id}>
+                <table>
+                    <tr>
+                        <td className="col-md-2 bg-dark">Invoice number</td>
+                        <td className="col-md-2">Total</td>
+                        <td className="col-md-2">Currancy</td>
+                        <td className="col-md-2">Invoice Date</td>
+                        <td className="col-md-2">Due Date</td>
+                        <td className="col-md-2">Remittance Adress</td>
+                        <td className="col-md-2">Status</td>
+                        <td className="col-md-2">actions</td>
+                    </tr>
+                    <tr>
+                            <td className="col-md-2"><h4>{link.invoice_number}</h4></td>
+                            <td className="col-md-2"><p>{link.total}</p></td>
+                            <td className="col-md-2"><p>{link.currancy}</p></td>
+                            <td className="col-md-2"><p>{link.invoice_date}</p></td>
+                            <td className="col-md-2"><p>{link.due_date}</p></td>
+                            <td className="col-md-2"><p>{link.remittance_address}</p></td>
+                            <td className="col-md-2"><p>{link.status? false : 'Pending'}</p></td>
+                            <td className="col-md-2">
+                                <div>
+                                    <i
+                                        className="material-icons text-danger"
+                                        onClick={() => onDeleteLink(link.id)}
+                                    >
+                                        close
+                                    </i>
+                                    <i
+                                        className="material-icons"
+                                        onClick={() => setCurrentId(link.id)}
+                                    >
+                                        create
+                                    </i>
+                                </div>
+                            </td>
+                    
+                    </tr>
+                </table>
                 </div>
-            </table>
-          </div>
-        ))}
+                ))}
+            </div>
+        </div>
       </div>
     </>
   );
