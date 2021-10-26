@@ -58,8 +58,7 @@ const Links = () => {
       <div className="col-md-7 p-2">
           <div className="card mb-1" >
             <div className="card-body">
-            {links.map((link) => (
-                <div key={link.id}>
+                <div >
                 <table>
                     <tr>
                         <td className="col-md-2 bg-dark">Invoice number</td>
@@ -71,7 +70,8 @@ const Links = () => {
                         <td className="col-md-2">Status</td>
                         <td className="col-md-2">actions</td>
                     </tr>
-                    <tr>
+                    {links.map((link) => (
+                    <tr key={link.id}>
                             <td className="col-md-2"><h4>{link.invoice_number}</h4></td>
                             <td className="col-md-2"><p>{link.total}</p></td>
                             <td className="col-md-2"><p>{link.currancy}</p></td>
@@ -95,11 +95,10 @@ const Links = () => {
                                     </i>
                                 </div>
                             </td>
-                    
                     </tr>
+                    ))}
                 </table>
                 </div>
-                ))}
             </div>
         </div>
       </div>

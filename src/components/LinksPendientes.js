@@ -70,7 +70,7 @@ const LinksPendientes = () => {
         await db.collection("links").doc(linkId).update({
           status: true
         });
-        toast("Aceptado", {
+        toast("Approved", {
           type: "success",
         });
     } catch (error) {
@@ -108,9 +108,9 @@ const LinksPendientes = () => {
                     <p>{link.invoice_number}</p>
                     <p>{link.currancy}</p>
                     <p>{link.description}</p>
-                    <p>Estado: {link.status? 'Aceptado' : 'Penidiente'}</p>
+                    <p>Estado: {link.status? 'Approved' : 'Penidiente'}</p>
                     <button className={link.status? 'btn btn-sucess' : 'btn btn-danger'} onClick={() => onChangeStatusLink(link.id)}>
-                      {link.status? 'Aceptado' : 'Penidiente'}
+                      {link.status? 'Approved' : 'Penidiente'}
                     </button>
 
                 </div>
